@@ -5,7 +5,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import Button from '@mui/material/Button';
 import { Stack, Typography } from '@mui/material';
 
-function PlusMinusPanel() {
+function PlusMinusPanel({ addNum }: { addNum: (n: number) => void }) {
   const [count, setCount] = useState(0);
 
   return (
@@ -33,7 +33,7 @@ function PlusMinusPanel() {
             <RemoveIcon />
           </IconButton>
 
-          <Button size="large" variant="outlined">
+          <Button size="large" variant="outlined" onClick={() => addNum(count)}>
             <Typography variant="h6">{count}</Typography>
           </Button>
 
