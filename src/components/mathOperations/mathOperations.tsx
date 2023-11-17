@@ -15,6 +15,12 @@ function MathOperations({ addOp }: { addOp: (n: string) => void }) {
       <Button variant="contained" color="warning" onClick={() => addOp('+')}>
         <Typography variant="h4">+</Typography>
       </Button>
+      <Button variant="contained" color="warning" onClick={() => addOp('(')}>
+        <Typography variant="h4">{`(`}</Typography>
+      </Button>
+      <Button variant="contained" color="warning" onClick={() => addOp(')')}>
+        <Typography variant="h4">{`)`}</Typography>
+      </Button>
     </Stack>
   );
 }
