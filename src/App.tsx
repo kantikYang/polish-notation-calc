@@ -1,20 +1,54 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
 import PlusMinusPanel from './components/plusMinus/PlusMinusPanel';
 import MathOperations from './components/mathOperations/mathOperations';
 import { IconButton, Card, Typography } from '@mui/material';
 import BackspaceIcon from '@mui/icons-material/Backspace';
-function App() {
-  const [mathStr, setMathStr] = useState(' ');
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
-  function gets(n: number | string): void {
-    setMathStr(mathStr + n);
+let mainOperations = new Set(['÷', '×', '−', '+']);
+
+function countBrackets(str: string): boolean {
+  let k = 0;
+  str.split('').forEach((el) => {
+    if (el === '(') {
+      k++;
+    } else if (el === ')') {
+      k--;
+    }
+  });
+  return k > 0;
+}
+
+function App() {
+  const [mathStr, setMathStr] = useState('');
+
+  function gets(cur: string): void {
+    const last = mathStr[mathStr.length - 1];
+
+    if (mainOperations.has(cur)) {
+      if (mainOperations.has(last)) {
+        setMathStr(mathStr.slice(0, -1) + cur);
+      } else if (last != '(' && mathStr.length > 0) {
+        setMathStr(mathStr + cur);
+      }
+    } else if (cur === '(') {
+      if (last === '(' || mainOperations.has(last) || mathStr.length === 0) {
+        setMathStr(mathStr + cur);
+      }
+    } else if (cur === ')') {
+      if (!mainOperations.has(last) && countBrackets(mathStr) && last !== '(') {
+        setMathStr(mathStr + cur);
+      }
+    }
   }
 
   function removeFromBoard() {
     setMathStr(mathStr.slice(0, -1));
+  }
+
+  function resetBoard() {
+    setMathStr('');
   }
 
   return (
@@ -22,21 +56,16 @@ function App() {
       <IconButton color="error" size="large" onClick={() => removeFromBoard()}>
         <BackspaceIcon fontSize="large" />
       </IconButton>
-      {/* <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div> */}
+      <IconButton color="error" size="large" onClick={() => resetBoard()}>
+        <RestartAltIcon fontSize="large" />
+      </IconButton>
       <div className="outBoard">
         <Typography sx={{ fontSize: 24 }} gutterBottom>
           {mathStr}
         </Typography>
       </div>
-      {/* <div className="card"><PlusMinusPanel addNum={gets} /></div> */}
       <MathOperations addOp={gets} />
+      <div className="card"></div>
     </>
   );
 }
