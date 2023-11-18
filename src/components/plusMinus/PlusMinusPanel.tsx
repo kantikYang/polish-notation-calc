@@ -5,13 +5,14 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import Button from '@mui/material/Button';
 import { Stack, Typography } from '@mui/material';
 
-function PlusMinusPanel({ addNum }: { addNum: (n: number) => void }) {
+function PlusMinusPanel({ addNum }: { addNum: (n: string) => void }) {
   const [count, setCount] = useState(0);
 
   return (
     <>
       <Stack alignItems="center" spacing={4}>
         <Button
+          variant="contained"
           color="secondary"
           onClick={() => setCount(Math.floor(Math.random() * 1000) - 500)}
         >
@@ -19,12 +20,20 @@ function PlusMinusPanel({ addNum }: { addNum: (n: number) => void }) {
         </Button>
 
         <Stack direction="row" spacing={12}>
-          <Button color="secondary" onClick={() => setCount(count / 2)}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => setCount(count / 2)}
+          >
             <Typography variant="body1">Поделить</Typography>
           </Button>
 
-          <Button color="secondary" onClick={() => setCount(count * count)}>
-            <Typography variant="body1">Квдрат</Typography>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => setCount(count * 2)}
+          >
+            <Typography variant="body1">Помножить</Typography>
           </Button>
         </Stack>
 
@@ -33,7 +42,11 @@ function PlusMinusPanel({ addNum }: { addNum: (n: number) => void }) {
             <RemoveIcon />
           </IconButton>
 
-          <Button size="large" variant="outlined" onClick={() => addNum(count)}>
+          <Button
+            variant="contained"
+            color="info"
+            onClick={() => addNum(count + '')}
+          >
             <Typography variant="h6">{count}</Typography>
           </Button>
 
@@ -43,16 +56,28 @@ function PlusMinusPanel({ addNum }: { addNum: (n: number) => void }) {
         </Stack>
 
         <Stack direction="row" spacing={12}>
-          <Button color="secondary" onClick={() => setCount(count - 0.1)}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => setCount(count - 0.1)}
+          >
             <Typography variant="body1">Чуть уменьшить</Typography>
           </Button>
 
-          <Button color="secondary" onClick={() => setCount(count + 0.1)}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => setCount(count + 0.1)}
+          >
             <Typography variant="body1">Чуть увеличить</Typography>
           </Button>
         </Stack>
 
-        <Button color="secondary" onClick={() => setCount(0)}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => setCount(0)}
+        >
           <Typography variant="body1">Сброс</Typography>
         </Button>
       </Stack>

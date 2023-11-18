@@ -23,7 +23,7 @@ function countBrackets(s: string): boolean {
 function App() {
   const [mathStr, setMathStr] = useState('');
 
-  function gets(cur: string): void {
+  function validInput(cur: string): void {
     const last = mathStr[mathStr.length - 1];
 
     if (mainOperations.has(cur)) {
@@ -40,6 +40,8 @@ function App() {
       if (!mainOperations.has(last) && countBrackets(mathStr) && last !== '(') {
         setMathStr(mathStr + cur);
       }
+    } else {
+      setMathStr(mathStr + cur);
     }
   }
 
@@ -53,19 +55,26 @@ function App() {
 
   return (
     <>
-      <IconButton color="error" size="large" onClick={() => removeFromBoard()}>
-        <BackspaceIcon fontSize="large" />
-      </IconButton>
-      <IconButton color="error" size="large" onClick={() => resetBoard()}>
-        <RestartAltIcon fontSize="large" />
-      </IconButton>
-      <div className="outBoard">
-        <Typography sx={{ fontSize: 24 }} gutterBottom>
-          {mathStr}
-        </Typography>
+      <div className="card">
+        <IconButton
+          color="error"
+          size="large"
+          onClick={() => removeFromBoard()}
+        >
+          <BackspaceIcon fontSize="large" />
+        </IconButton>
+        <IconButton color="error" size="large" onClick={() => resetBoard()}>
+          <RestartAltIcon fontSize="large" />
+        </IconButton>
+        <div className="outBoard">
+          <Typography sx={{ fontSize: 24 }} gutterBottom>
+            {mathStr}
+          </Typography>
+        </div>
+        <MathOperations addOp={validInput} />
+
+        <PlusMinusPanel addNum={validInput} />
       </div>
-      <MathOperations addOp={gets} />
-      <div className="card"></div>
     </>
   );
 }
