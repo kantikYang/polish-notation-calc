@@ -8,9 +8,9 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 let mainOperations = new Set(['÷', '×', '−', '+']);
 
-function countBrackets(str: string): boolean {
+function countBrackets(s: string): boolean {
   let k = 0;
-  str.split('').forEach((el) => {
+  s.split('').forEach((el) => {
     if (el === '(') {
       k++;
     } else if (el === ')') {
