@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import PlusMinusPanel from './components/plusMinus/PlusMinusPanel';
 import MathOperations from './components/mathOperations/mathOperations';
-import { IconButton, Card, Typography } from '@mui/material';
+import { IconButton, Typography } from '@mui/material';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
@@ -28,20 +28,20 @@ function App() {
 
     if (mainOperations.has(cur)) {
       if (mainOperations.has(last)) {
-        setMathStr(mathStr.slice(0, -1) + cur);
+        setMathStr(mathStr.slice(0, -1) + ' ' + cur);
       } else if (last != '(' && mathStr.length > 0) {
-        setMathStr(mathStr + cur);
+        setMathStr(mathStr + ' ' + cur);
       }
     } else if (cur === '(') {
       if (last === '(' || mainOperations.has(last) || mathStr.length === 0) {
-        setMathStr(mathStr + cur);
+        setMathStr(mathStr + ' ' + cur);
       }
     } else if (cur === ')') {
       if (!mainOperations.has(last) && countBrackets(mathStr) && last !== '(') {
-        setMathStr(mathStr + cur);
+        setMathStr(mathStr + ' ' + cur);
       }
     } else {
-      setMathStr(mathStr + cur);
+      setMathStr(mathStr + ' ' + cur);
     }
   }
 
