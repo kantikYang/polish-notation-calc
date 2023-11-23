@@ -5,8 +5,7 @@ import MathOperations from './components/mathOperations/mathOperations';
 import { IconButton, Card, Typography } from '@mui/material';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
-
-let mainOperations = new Set(['÷', '×', '−', '+']);
+import { mainOperations } from './utils/polishNotation';
 
 function countBrackets(s: string): boolean {
   let k = 0;
