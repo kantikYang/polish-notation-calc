@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import './App.css';
-import PlusMinusPanel from './components/plusMinus/PlusMinusPanel';
-import MathOperations from './components/mathOperations/mathOperations';
+import PlusMinusPanel from '../../components/plusMinus/PlusMinusPanel';
+import MathOperations from '../../components/mathOperations/mathOperations';
 import { IconButton, Typography } from '@mui/material';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
-import { mainOperations } from './utils/polishNotation';
+import { mainOperations } from '../../utils/polishNotation';
 
 function countBrackets(s: string): boolean {
   let k = 0;
@@ -40,7 +40,13 @@ function App() {
         setMathStr(mathStr + ' ' + cur);
       }
     } else {
-      setMathStr(mathStr + ' ' + cur);
+      if (mainOperations.has(last) || mathStr.length === 0 || last === '(') {
+        if (Number(cur) < 0) {
+          setMathStr(mathStr + ' ' + '(' + ' ' + cur + ' ' + ')');
+        } else {
+          setMathStr(mathStr + ' ' + cur);
+        }
+      }
     }
   }
 
