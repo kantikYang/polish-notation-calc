@@ -1,23 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface mathState {
-  mathString: string;
+  value: string;
 }
 
 const initialState: mathState = {
-  mathString: '',
+  value: '',
 };
 
 export const mathSlice = createSlice({
-  name: 'mathStr',
+  name: 'mathExpression',
   initialState,
   reducers: {
     addExpression: (state, { payload }) => {
-      state.mathString = payload;
+      state.value = payload;
     },
 
     resetExpressoin: (state) => {
-      state.mathString = '';
+      state.value = '';
     },
   },
 });

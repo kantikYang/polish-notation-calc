@@ -4,13 +4,28 @@ import App from './pages/App/App';
 import './index.css';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import PolishNotationConvert from './pages/PolishNotation/PolishNotationConvert';
+import { AppBar, Stack, Toolbar } from '@mui/material';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+        <AppBar position="static">
+          <Toolbar>
+            <Stack
+              direction="row"
+              spacing={2}
+              justifyContent="space-around"
+              sx={{ width: '100%' }}
+            >
+              <Link to="/"> home</Link>
+              <Link to="/polishNotation"> polishNotation</Link>
+            </Stack>
+          </Toolbar>
+        </AppBar>
+
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/polishNotation" element={<PolishNotationConvert />} />
