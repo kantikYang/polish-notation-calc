@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import PolishNotationConvert from './pages/PolishNotation/PolishNotationConvert';
-import { AppBar, Stack, Toolbar } from '@mui/material';
+import { AppBar, Stack, Toolbar, Button } from '@mui/material';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -16,12 +16,18 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Toolbar>
             <Stack
               direction="row"
-              spacing={2}
-              justifyContent="space-around"
+              spacing={12}
+              justifyContent="center"
               sx={{ width: '100%' }}
             >
-              <Link to="/"> home</Link>
-              <Link to="/polishNotation"> polishNotation</Link>
+              <Link to="/">
+                <Button variant="text" color="warning">
+                  home
+                </Button>
+              </Link>
+              <Link to="/polishNotation">
+                <Button variant="contained">polishNotation</Button>
+              </Link>
             </Stack>
           </Toolbar>
         </AppBar>

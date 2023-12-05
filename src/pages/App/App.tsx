@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import PlusMinusPanel from '../../components/plusMinus/PlusMinusPanel';
 import MathOperations from '../../components/mathOperations/mathOperations';
-import { IconButton, Typography, Button } from '@mui/material';
+import { IconButton, Typography, Button, Stack } from '@mui/material';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { mainOperations } from '../../utils/polishNotation';
@@ -24,9 +24,9 @@ function countBrackets(s: string): boolean {
 }
 
 function App() {
-  const [mathStr, setMathStr] = useState('');
-  const dispatch = useDispatch();
   const count = useSelector((state: RootState) => state.mathExpression.value);
+  const [mathStr, setMathStr] = useState(count);
+  const dispatch = useDispatch();
 
   function validInput(cur: string): void {
     const last = mathStr[mathStr.length - 1];
@@ -67,16 +67,18 @@ function App() {
   return (
     <>
       <div className="card">
-        <IconButton
-          color="error"
-          size="large"
-          onClick={() => removeFromBoard()}
-        >
-          <BackspaceIcon fontSize="large" />
-        </IconButton>
-        <IconButton color="error" size="large" onClick={() => resetBoard()}>
-          <RestartAltIcon fontSize="large" />
-        </IconButton>
+        <Stack direction="row" spacing={4}>
+          <IconButton
+            color="error"
+            size="large"
+            onClick={() => removeFromBoard()}
+          >
+            <BackspaceIcon fontSize="large" />
+          </IconButton>
+          <IconButton color="error" size="large" onClick={() => resetBoard()}>
+            <RestartAltIcon fontSize="large" />
+          </IconButton>
+        </Stack>
         <div className="outBoard">
           <Typography sx={{ fontSize: 24 }} gutterBottom>
             {mathStr}
