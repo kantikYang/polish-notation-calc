@@ -7,6 +7,7 @@ import { store } from './redux/store';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import PolishNotationConvert from './pages/PolishNotation/PolishNotationConvert';
 import { AppBar, Stack, Toolbar, Button } from '@mui/material';
+import CalculateRpn from './pages/CalculateRpn/CalculateRpn';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -28,6 +29,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <Link to="/polishNotation">
                 <Button variant="contained">polishNotation</Button>
               </Link>
+              <Link to="/calculateRpn">
+                <Button variant="contained">calculate</Button>
+              </Link>
             </Stack>
           </Toolbar>
         </AppBar>
@@ -35,6 +39,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/polishNotation" element={<PolishNotationConvert />} />
+          <Route path="/calculateRpn" element={<CalculateRpn />} />
         </Routes>
       </BrowserRouter>
     </Provider>

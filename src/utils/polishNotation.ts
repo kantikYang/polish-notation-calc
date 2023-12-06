@@ -1,6 +1,4 @@
-import { setRef } from '@mui/material';
-
-export let mainOperations = new Set(['÷', '×', '−', '+']);
+export const mainOperations = new Set(['÷', '×', '−', '+']);
 
 interface typeOfWeight {
   [key: string]: number;
