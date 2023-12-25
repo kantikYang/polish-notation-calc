@@ -8,7 +8,7 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { mainOperations } from '../../utils/polishNotation';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addExpression, resetExpressoin } from '../../redux/features/mathSlice';
+import { addExpression } from '../../redux/features/mathSlice';
 import { RootState } from '../../redux/store';
 
 function countBrackets(s: string): boolean {
